@@ -1,0 +1,108 @@
+
+---
+events:
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Users/IcePa/.cmake-deps/cmake/win/x64/share/cmake-4.1/Modules/CMakeDetermineSystem.cmake:212 (message)"
+      - "CMakeLists.txt:2 (project)"
+    message: |
+      The system is: Windows - 10.0.26200 - AMD64
+  -
+    kind: "find-v1"
+    backtrace:
+      - "CMakeLists.txt:4 (find_program)"
+    mode: "program"
+    variable: "GLSLC"
+    description: "Path to a program."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: true
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "glslc"
+    candidate_directories:
+      - "C:/VulkanSDK/1.4.350.0/Bin/"
+      - "C:/Windows/System32/"
+      - "C:/Windows/"
+      - "C:/Windows/System32/wbem/"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/"
+      - "C:/Windows/System32/OpenSSH/"
+      - "C:/Windows/AtlasModules/"
+      - "C:/Windows/AtlasModules/Tools/"
+      - "C:/Windows/AtlasModules/Scripts/"
+      - "C:/Program Files/Git/cmd/"
+      - "C:/Program Files/nodejs/"
+      - "C:/Program Files (x86)/NVIDIA Corporation/PhysX/Common/"
+      - "C:/Program Files/playit_gg/bin/"
+      - "C:/Program Files/dotnet/"
+      - "C:/Users/IcePa/.cargo/bin/"
+      - "C:/Users/IcePa/AppData/Local/Microsoft/WindowsApps/"
+      - "C:/Program Files (x86)/Steam/ext/bin/"
+      - "C:/Users/IcePa/AppData/Local/Programs/Microsoft VS Code Insiders/bin/"
+      - "C:/Users/IcePa/AppData/Roaming/npm/"
+      - "C:/Users/IcePa/AppData/Local/Microsoft/WinGet/Packages/DenoLand.Deno_Microsoft.Winget.Source_8wekyb3d8bbwe/"
+      - "C:/Users/IcePa/AppData/Local/Microsoft/WinGet/Packages/yt-dlp.FFmpeg_Microsoft.Winget.Source_8wekyb3d8bbwe/ffmpeg-N-124716-g054dffd133-win64-gpl/bin/"
+      - "C:/Users/IcePa/AppData/Local/Microsoft/WinGet/Packages/yt-dlp.yt-dlp_Microsoft.Winget.Source_8wekyb3d8bbwe/"
+      - "C:/Users/IcePa/.cmake-deps/cmake/win/x64/bin/"
+      - "C:/Users/IcePa/.cmake-deps/ninja/win/x64/"
+      - "C:/Program Files/bin/"
+      - "C:/Program Files/sbin/"
+      - "C:/Program Files/"
+      - "C:/Program Files (x86)/bin/"
+      - "C:/Program Files (x86)/sbin/"
+      - "C:/Program Files (x86)/"
+      - "C:/Users/IcePa/.cmake-deps/cmake/win/x64/bin/"
+      - "C:/Users/IcePa/.cmake-deps/cmake/win/x64/sbin/"
+      - "C:/Users/IcePa/.cmake-deps/cmake/win/x64/"
+      - "C:/Program Files (x86)/shaders/bin/"
+      - "C:/Program Files (x86)/shaders/sbin/"
+      - "C:/Program Files (x86)/shaders/"
+    searched_directories:
+      - "C:/VulkanSDK/1.4.350.0/Bin/glslc.com"
+    found: "C:/VulkanSDK/1.4.350.0/Bin/glslc.exe"
+    search_context:
+      ENV{PATH}:
+        - "C:\\VulkanSDK\\1.4.350.0\\Bin"
+        - "C:\\WINDOWS\\system32"
+        - "C:\\WINDOWS"
+        - "C:\\WINDOWS\\System32\\Wbem"
+        - "C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\"
+        - "C:\\WINDOWS\\System32\\OpenSSH\\"
+        - "C:\\WINDOWS\\AtlasModules"
+        - "C:\\WINDOWS\\AtlasModules\\Tools"
+        - "C:\\WINDOWS\\AtlasModules\\Scripts"
+        - "C:\\Program Files\\Git\\cmd"
+        - "C:\\Program Files\\nodejs\\"
+        - "C:\\Program Files (x86)\\NVIDIA Corporation\\PhysX\\Common"
+        - "C:\\Program Files\\playit_gg\\bin\\"
+        - "C:\\Program Files\\dotnet\\"
+        - "C:\\Users\\IcePa\\.cargo\\bin"
+        - "C:\\WINDOWS\\system32"
+        - "C:\\WINDOWS"
+        - "C:\\WINDOWS\\System32\\Wbem"
+        - "C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\"
+        - "C:\\WINDOWS\\System32\\OpenSSH\\"
+        - "C:\\WINDOWS\\AtlasModules"
+        - "C:\\WINDOWS\\AtlasModules\\Tools"
+        - "C:\\WINDOWS\\AtlasModules\\Scripts"
+        - "C:\\Users\\IcePa\\AppData\\Local\\Microsoft\\WindowsApps"
+        - "C:\\Program Files (x86)\\Steam\\ext\\bin"
+        - "C:\\Users\\IcePa\\AppData\\Local\\Programs\\Microsoft VS Code Insiders\\bin"
+        - "C:\\Users\\IcePa\\AppData\\Roaming\\npm"
+        - "C:\\Users\\IcePa\\AppData\\Local\\Microsoft\\WinGet\\Packages\\DenoLand.Deno_Microsoft.Winget.Source_8wekyb3d8bbwe"
+        - "C:\\Users\\IcePa\\AppData\\Local\\Microsoft\\WinGet\\Packages\\yt-dlp.FFmpeg_Microsoft.Winget.Source_8wekyb3d8bbwe\\ffmpeg-N-124716-g054dffd133-win64-gpl\\bin"
+        - "C:\\Users\\IcePa\\AppData\\Local\\Microsoft\\WinGet\\Packages\\yt-dlp.yt-dlp_Microsoft.Winget.Source_8wekyb3d8bbwe"
+        - "C:\\Users\\IcePa\\.cmake-deps\\cmake\\win\\x64\\bin"
+        - "C:\\Users\\IcePa\\.cmake-deps\\ninja\\win\\x64"
+      CMAKE_INSTALL_PREFIX: "C:/Program Files (x86)/shaders"
+      CMAKE_SYSTEM_PREFIX_PATH:
+        - "C:/Program Files"
+        - "C:/Program Files (x86)"
+        - "C:/Users/IcePa/.cmake-deps/cmake/win/x64"
+        - "C:/Program Files (x86)/shaders"
+...

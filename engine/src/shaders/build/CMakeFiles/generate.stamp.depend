@@ -1,0 +1,10 @@
+# CMake generation dependency list for this directory.
+C:/Users/IcePa/.cmake-deps/cmake/win/x64/share/cmake-4.1/Modules/CMakeGenericSystem.cmake
+C:/Users/IcePa/.cmake-deps/cmake/win/x64/share/cmake-4.1/Modules/CMakeInitializeConfigs.cmake
+C:/Users/IcePa/.cmake-deps/cmake/win/x64/share/cmake-4.1/Modules/CMakeSystemSpecificInformation.cmake
+C:/Users/IcePa/.cmake-deps/cmake/win/x64/share/cmake-4.1/Modules/CMakeSystemSpecificInitialize.cmake
+C:/Users/IcePa/.cmake-deps/cmake/win/x64/share/cmake-4.1/Modules/Platform/Windows-Initialize.cmake
+C:/Users/IcePa/.cmake-deps/cmake/win/x64/share/cmake-4.1/Modules/Platform/Windows.cmake
+C:/Users/IcePa/.cmake-deps/cmake/win/x64/share/cmake-4.1/Modules/Platform/WindowsPaths.cmake
+C:/Users/IcePa/Desktop/Engine/engine/engine/src/shaders/CMakeLists.txt
+C:/Users/IcePa/Desktop/Engine/engine/engine/src/shaders/build/CMakeFiles/4.1.2/CMakeSystem.cmake
