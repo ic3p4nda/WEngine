@@ -6,7 +6,7 @@
 
 #include <memory>
 
-namespace Engine
+namespace ZEngine
 {
     
     struct TransformComponent
@@ -58,12 +58,12 @@ namespace Engine
         }
     };
     
-    class GameObject
+    class ZGameObject
     {
     public:
         using id_t = unsigned int;
         
-        static GameObject createGameObject();
+        static ZGameObject createGameObject();
         
         // GameObject(const GameObject &) = delete;
         // GameObject &operator=(const GameObject &) = delete;
@@ -72,12 +72,12 @@ namespace Engine
         
         id_t getId() { return id; };
         
-        std::shared_ptr<Model> model{};
+        std::shared_ptr<ZModel> model{};
         glm::vec3 color{};
-        TransformComponent transformComponent{};
+        TransformComponent transform{};
         
         private:
-        GameObject(id_t objId) : id(objId) {};
+        ZGameObject(id_t objId) : id(objId) {};
         
         id_t id;
     };

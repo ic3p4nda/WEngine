@@ -6,9 +6,9 @@
 #define GLM_FORCE_DEPTH_ZERO_TO_ONE
 #include <glm/glm.hpp>
 
-namespace Engine
+namespace ZEngine
 {
-    class Model
+    class ZModel
     {
     public:
         
@@ -21,11 +21,11 @@ namespace Engine
             static std::vector<VkVertexInputAttributeDescription> getAttributeDescriptions();
         };
         
-        Model(Device &device, const std::vector<Vertex> &vertices);
-        ~Model();
+        ZModel(ZDevice &device, const std::vector<Vertex> &vertices);
+        ~ZModel();
         
-        Model(const Model&) = delete;
-        Model &operator=(const Model&) = delete;
+        ZModel(const ZModel&) = delete;
+        ZModel &operator=(const ZModel&) = delete;
         
         void bind(VkCommandBuffer commandBuffer);
         void draw(VkCommandBuffer commandBuffer);
@@ -33,7 +33,7 @@ namespace Engine
     private:
         void createVertexBuffers(const std::vector<Vertex> &vertices);
         
-        Device& device;
+        ZDevice& device;
         VkBuffer vertexBuffer;
         VkDeviceMemory vertexBufferMemory;
         uint32_t vertexCount;

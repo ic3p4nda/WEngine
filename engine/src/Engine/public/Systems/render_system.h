@@ -14,7 +14,7 @@
 #include <memory>
 #include <vector>
 
-namespace Engine {
+namespace ZEngine {
     const std::string vertexShaderPath = "C:/Users/IcePa/Desktop/Engine/engine/engine/src/shaders/shader.vert.spv";
     const std::string fragShaderPath = "C:/Users/IcePa/Desktop/Engine/engine/engine/src/shaders/shader.frag.spv";
     
@@ -24,27 +24,27 @@ namespace Engine {
         alignas(16) glm::vec3 color;
     };
     
-    class RenderSystem
+    class ZRenderSystem
     {
     public:
-        RenderSystem(Device& device, VkRenderPass renderPass);
-        ~RenderSystem();
+        ZRenderSystem(ZDevice& device, VkRenderPass renderPass);
+        ~ZRenderSystem();
         
-        RenderSystem(const RenderSystem&) = delete;
-        RenderSystem &operator=(const RenderSystem&) = delete;
+        ZRenderSystem(const ZRenderSystem&) = delete;
+        ZRenderSystem &operator=(const ZRenderSystem&) = delete;
     
         void renderGameObjects(
             VkCommandBuffer commandBuffer, 
-            std::vector<GameObject>& gameObjects,
-            const Camera& camera);
+            std::vector<ZGameObject>& gameObjects,
+            const ZCamera& camera);
     
     private:
         void createPipelineLayout();
         void createPipeline(VkRenderPass renderPass);
         
-        Device& Device;
+        ZDevice& Device;
         
-        std::unique_ptr<Pipeline> pipeline;
+        std::unique_ptr<ZPipeline> pipeline;
         VkPipelineLayout pipelineLayout;
     };
     

@@ -1,10 +1,10 @@
 ﻿#include "game_object.h"
 
-namespace Engine
+namespace ZEngine
 {
-    GameObject GameObject::createGameObject()
+    ZGameObject ZGameObject::createGameObject()
     {
         static id_t currentId = 0;
-        return GameObject{ currentId++ };
+        return ZGameObject{ currentId++ };
     }
 }

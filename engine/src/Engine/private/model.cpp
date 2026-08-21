@@ -3,9 +3,9 @@
 #include <cassert>
 #include <cstring>
 
-namespace Engine
+namespace ZEngine
 {
-    std::vector<VkVertexInputBindingDescription> Model::Vertex::getBindingDescriptions()
+    std::vector<VkVertexInputBindingDescription> ZModel::Vertex::getBindingDescriptions()
     {
         std::vector<VkVertexInputBindingDescription> bindingDescriptions(1);
         bindingDescriptions[0].binding = 0;
@@ -14,7 +14,7 @@ namespace Engine
         return bindingDescriptions;
     }
 
-    std::vector<VkVertexInputAttributeDescription> Model::Vertex::getAttributeDescriptions()
+    std::vector<VkVertexInputAttributeDescription> ZModel::Vertex::getAttributeDescriptions()
     {
         std::vector<VkVertexInputAttributeDescription> attributeDescriptions(2);
         attributeDescriptions[0].binding = 0;
@@ -30,30 +30,30 @@ namespace Engine
         return attributeDescriptions;
     }
 
-    Model::Model(Device& device, const std::vector<Vertex>& vertices) : device{device}
+    ZModel::ZModel(ZDevice& device, const std::vector<Vertex>& vertices) : device{device}
     {
         createVertexBuffers(vertices);
     }
 
-    Model::~Model()
+    ZModel::~ZModel()
     {
         vkDestroyBuffer(device.device(), vertexBuffer, nullptr);
         vkFreeMemory(device.device(), vertexBufferMemory, nullptr);
     }
 
-    void Model::bind(VkCommandBuffer commandBuffer)
+    void ZModel::bind(VkCommandBuffer commandBuffer)
     {
         VkBuffer buffers[] = {vertexBuffer};
         VkDeviceSize offsets[] = {0};
         vkCmdBindVertexBuffers(commandBuffer, 0, 1, buffers, offsets);
     }
 
-    void Model::draw(VkCommandBuffer commandBuffer)
+    void ZModel::draw(VkCommandBuffer commandBuffer)
     {
         vkCmdDraw(commandBuffer, vertexCount, 1, 0, 0);
     }
 
-    void Model::createVertexBuffers(const std::vector<Vertex>& vertices)
+    void ZModel::createVertexBuffers(const std::vector<Vertex>& vertices)
     {
         vertexCount = static_cast<uint32_t>(vertices.size());
         assert(vertexCount >= 3 && "Vertex count must be >= 3");

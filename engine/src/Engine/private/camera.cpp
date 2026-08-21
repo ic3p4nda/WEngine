@@ -4,14 +4,14 @@
 #include <limits>
 #include <glm/ext/matrix_clip_space.hpp>
 
-namespace Engine
+namespace ZEngine
 {
-    void Camera::setOrthographicProjection(float left, float right, float bottom, float top, float near, float far)
+    void ZCamera::setOrthographicProjection(float left, float right, float bottom, float top, float near, float far)
     {
         projectionMatrix = glm::ortho(left, right, bottom, top, near, far);
     }
 
-    void Camera::setPerspectiveProjection(float fovy, float aspect, float near, float far)
+    void ZCamera::setPerspectiveProjection(float fovy, float aspect, float near, float far)
     {
         projectionMatrix = glm::perspective(fovy, aspect, near, far);
         
@@ -25,7 +25,7 @@ namespace Engine
         projectionMatrix[3][2] = -(far * near) / (far - near);
     }
 
-    void Camera::setViewDirection(glm::vec3 position, glm::vec3 direction, glm::vec3 up)
+    void ZCamera::setViewDirection(glm::vec3 position, glm::vec3 direction, glm::vec3 up)
     {
         const glm::vec3 w{glm::normalize(direction)};
         const glm::vec3 u{glm::normalize(glm::cross(w, up))};
@@ -46,12 +46,12 @@ namespace Engine
         viewMatrix[3][2] = -glm::dot(w, position);
     }
 
-    void Camera::setViewTarget(glm::vec3 position, glm::vec3 target, glm::vec3 up)
+    void ZCamera::setViewTarget(glm::vec3 position, glm::vec3 target, glm::vec3 up)
     {
         setViewDirection(position, target - position, up);
     }
 
-    void Camera::setViewYXZ(glm::vec3 position, glm::vec3 rotation)
+    void ZCamera::setViewYXZ(glm::vec3 position, glm::vec3 rotation)
     {
         const float c3 = glm::cos(rotation.z);
         const float s3 = glm::sin(rotation.z);

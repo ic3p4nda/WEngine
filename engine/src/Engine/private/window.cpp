@@ -4,20 +4,20 @@
 #include <ostream>
 #include <stdexcept>
 
-namespace Engine
+namespace ZEngine
 {
-    Window::Window(int w, int h, std::string t) : width(w), height(h), windowTitle(t)
+    ZWindow::ZWindow(int w, int h, std::string t) : width(w), height(h), windowTitle(t)
     {
         initWindow();
     }
 
-    Window::~Window()
+    ZWindow::~ZWindow()
     {
         glfwDestroyWindow(window);
         glfwTerminate();
     }
 
-    void Window::createWindowSurface(VkInstance instance, VkSurfaceKHR* surface)
+    void ZWindow::createWindowSurface(VkInstance instance, VkSurfaceKHR* surface)
     {
         if (glfwCreateWindowSurface(instance, window, nullptr, surface) != VK_SUCCESS)
         {
@@ -25,7 +25,7 @@ namespace Engine
         }
     }
 
-    void Window::initWindow()
+    void ZWindow::initWindow()
     {
         glfwInit();
         glfwWindowHint(GLFW_CLIENT_API, GLFW_NO_API);
@@ -36,9 +36,9 @@ namespace Engine
         glfwSetFramebufferSizeCallback(window, framebufferResizeCallback);
     }
 
-    void Window::framebufferResizeCallback(GLFWwindow* window, int width, int height)
+    void ZWindow::framebufferResizeCallback(GLFWwindow* window, int width, int height)
     {
-        auto engineWindow = reinterpret_cast<Window*>(glfwGetWindowUserPointer(window));
+        auto engineWindow = reinterpret_cast<ZWindow*>(glfwGetWindowUserPointer(window));
         engineWindow->frameBufferResized = true;
         engineWindow->width = width;
         engineWindow->height = height;

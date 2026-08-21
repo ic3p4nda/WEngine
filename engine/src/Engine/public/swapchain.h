@@ -10,18 +10,18 @@
 #include <string>
 #include <vector>
 
-namespace Engine {
+namespace ZEngine {
 
-class SwapChain {
+class ZSwapChain {
  public:
   static constexpr int MAX_FRAMES_IN_FLIGHT = 2;
 
-  SwapChain(Device &deviceRef, VkExtent2D extent);
-  SwapChain(Device &deviceRef, VkExtent2D extent, std::shared_ptr<SwapChain> previous);
-  ~SwapChain();
+  ZSwapChain(ZDevice &deviceRef, VkExtent2D extent);
+  ZSwapChain(ZDevice &deviceRef, VkExtent2D extent, std::shared_ptr<ZSwapChain> previous);
+  ~ZSwapChain();
 
-  SwapChain(const SwapChain &) = delete;
-  SwapChain& operator=(const SwapChain &) = delete;
+  ZSwapChain(const ZSwapChain &) = delete;
+  ZSwapChain& operator=(const ZSwapChain &) = delete;
 
   VkFramebuffer getFrameBuffer(int index) { return swapChainFramebuffers[index]; }
   VkRenderPass getRenderPass() { return renderPass; }
@@ -40,7 +40,7 @@ class SwapChain {
   VkResult acquireNextImage(uint32_t *imageIndex);
   VkResult submitCommandBuffers(const VkCommandBuffer *buffers, uint32_t *imageIndex);
 
-  bool compareSwapFormates(const SwapChain& swapchain) const
+  bool compareSwapFormates(const ZSwapChain& swapchain) const
   {
     return swapchain.swapChainDepthFormat == swapChainDepthFormat && 
       swapchain.swapChainImageFormat == swapChainImageFormat;
@@ -75,11 +75,11 @@ class SwapChain {
   std::vector<VkImage> swapChainImages;
   std::vector<VkImageView> swapChainImageViews;
 
-  Device &device_;
+  ZDevice &device_;
   VkExtent2D windowExtent;
 
   VkSwapchainKHR swapChain;
-    std::shared_ptr<SwapChain> oldSwapChain;
+    std::shared_ptr<ZSwapChain> oldSwapChain;
 
   std::vector<VkSemaphore> imageAvailableSemaphores;
   std::vector<VkSemaphore> renderFinishedSemaphores;

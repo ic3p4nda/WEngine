@@ -6,9 +6,9 @@
 #include <stdexcept>
 #include <cassert>
 
-namespace Engine
+namespace ZEngine
 {
-    Pipeline::Pipeline(Device &device, 
+    ZPipeline::ZPipeline(ZDevice &device, 
             const PipelineConfigInfo &configInfo,
             const std::string& vertFilepath, 
             const std::string& fragFilepath) : device{device}
@@ -16,19 +16,19 @@ namespace Engine
         createGraphicsPipeline(vertFilepath, fragFilepath, configInfo);
     }
 
-    Pipeline::~Pipeline()
+    ZPipeline::~ZPipeline()
     {
         vkDestroyShaderModule(device.device(), vertShaderModule, nullptr);
         vkDestroyShaderModule(device.device(), fragShaderModule, nullptr);
         vkDestroyPipeline(device.device(), graphicsPipeline, nullptr);
     }
 
-    void Pipeline::bind(VkCommandBuffer commandBuffer)
+    void ZPipeline::bind(VkCommandBuffer commandBuffer)
     {
         vkCmdBindPipeline(commandBuffer, VK_PIPELINE_BIND_POINT_GRAPHICS, graphicsPipeline);
     }
 
-    void Pipeline::defaultPipelineConfigInfo(PipelineConfigInfo &configInfo)
+    void ZPipeline::defaultPipelineConfigInfo(PipelineConfigInfo &configInfo)
     {
         configInfo.inputAssemblyInfo.sType = VK_STRUCTURE_TYPE_PIPELINE_INPUT_ASSEMBLY_STATE_CREATE_INFO;
         configInfo.inputAssemblyInfo.topology = VK_PRIMITIVE_TOPOLOGY_TRIANGLE_LIST;
@@ -99,7 +99,7 @@ namespace Engine
         configInfo.dynamicStateInfo.flags = 0;
     }
 
-    std::vector<char> Pipeline::readFile(const std::string& filepath)
+    std::vector<char> ZPipeline::readFile(const std::string& filepath)
     {
         std::ifstream file(filepath, std::ios::ate | std::ios::binary);
         
@@ -118,7 +118,7 @@ namespace Engine
         return buffer;
     }
 
-    void Pipeline::createGraphicsPipeline(const std::string& vertFilepath, 
+    void ZPipeline::createGraphicsPipeline(const std::string& vertFilepath, 
             const std::string& fragFilepath,
             const PipelineConfigInfo &configInfo)
     {
@@ -154,8 +154,8 @@ namespace Engine
         shaderStages[1].pNext = nullptr;
         shaderStages[1].pSpecializationInfo = nullptr;
         
-        auto bindingDescriptions = Model::Vertex::getBindingDescriptions();
-        auto attributeDescriptions = Model::Vertex::getAttributeDescriptions();
+        auto bindingDescriptions = ZModel::Vertex::getBindingDescriptions();
+        auto attributeDescriptions = ZModel::Vertex::getAttributeDescriptions();
         VkPipelineVertexInputStateCreateInfo vertexInputInfo{};
         vertexInputInfo.sType = VK_STRUCTURE_TYPE_PIPELINE_VERTEX_INPUT_STATE_CREATE_INFO;
         vertexInputInfo.vertexAttributeDescriptionCount = static_cast<uint32_t>(attributeDescriptions.size());
@@ -190,7 +190,7 @@ namespace Engine
         
     }
 
-    void Pipeline::createShaderModule(const std::vector<char>& code, VkShaderModule* shaderModule)
+    void ZPipeline::createShaderModule(const std::vector<char>& code, VkShaderModule* shaderModule)
     {
         VkShaderModuleCreateInfo createInfo = {};
         createInfo.sType = VK_STRUCTURE_TYPE_SHADER_MODULE_CREATE_INFO;

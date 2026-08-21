@@ -6,20 +6,20 @@
 
 #include "app.h"
 
-namespace Engine
+namespace ZEngine
 {
-    RenderSystem::RenderSystem(class Device& device, VkRenderPass renderpass) : Device(device)
+    ZRenderSystem::ZRenderSystem(class ZDevice& device, VkRenderPass renderpass) : Device(device)
     {
         createPipelineLayout();
         createPipeline(renderpass);
     }
 
-    RenderSystem::~RenderSystem()
+    ZRenderSystem::~ZRenderSystem()
     {
         vkDestroyPipelineLayout(Device.device(), pipelineLayout, nullptr);
     }
     
-    void RenderSystem::createPipelineLayout()
+    void ZRenderSystem::createPipelineLayout()
     {
         VkPushConstantRange pushConstantRange{};
         pushConstantRange.stageFlags = VK_SHADER_STAGE_VERTEX_BIT | VK_SHADER_STAGE_FRAGMENT_BIT;
@@ -39,33 +39,30 @@ namespace Engine
         }
     }
 
-    void RenderSystem::createPipeline(VkRenderPass renderpass)
+    void ZRenderSystem::createPipeline(VkRenderPass renderpass)
     {
         assert(pipelineLayout != nullptr && "Cannot create pipeline before pipeline layout");
         
         PipelineConfigInfo pipelineConfig{};
-        Pipeline::defaultPipelineConfigInfo(pipelineConfig);
+        ZPipeline::defaultPipelineConfigInfo(pipelineConfig);
         pipelineConfig.renderPass = renderpass;
         pipelineConfig.pipelineLayout = pipelineLayout;
-        pipeline = std::make_unique<Pipeline>(Device,
+        pipeline = std::make_unique<ZPipeline>(Device,
             pipelineConfig,
             vertexShaderPath,
             fragShaderPath);
     }
 
-    void RenderSystem::renderGameObjects(VkCommandBuffer commandBuffer, std::vector<GameObject>& gameObjects, const Camera& camera)
+    void ZRenderSystem::renderGameObjects(VkCommandBuffer commandBuffer, std::vector<ZGameObject>& gameObjects, const ZCamera& camera)
     {
         pipeline->bind(commandBuffer);
         auto projectionView = camera.getProjection() * camera.getView();
         
         for (auto& object : gameObjects)
-        {
-            object.transformComponent.rotation.y = glm::mod(object.transformComponent.rotation.y + 0.01f, glm::two_pi<float>());
-            object.transformComponent.rotation.x = glm::mod(object.transformComponent.rotation.x + 0.005f, glm::two_pi<float>());
-            
+        {     
             SimplePushConstantData push{};
             push.color = object.color;
-            push.transform = projectionView* object.transformComponent.mat4();
+            push.transform = projectionView* object.transform.mat4();
             
             vkCmdPushConstants(commandBuffer, 
                pipelineLayout,

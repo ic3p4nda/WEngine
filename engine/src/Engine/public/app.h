@@ -15,29 +15,31 @@
 
 #include "Systems/render_system.h"
 
-namespace Engine {
-    class App
+#define MAX_FRAME_TIME 0.5f
+
+namespace ZEngine {
+    class ZApp
     {
     public:
         static constexpr int WIDTH = 800;
         static constexpr int HEIGHT = 600;
         
-        App();
-        ~App();
+        ZApp();
+        ~ZApp();
         
-        App(const App&) = delete;
-        App &operator=(const App&) = delete;
+        ZApp(const ZApp&) = delete;
+        ZApp &operator=(const ZApp&) = delete;
         
         void run();
     
     private:
         void LoadGameObjects();
         
-        Window Window{WIDTH , HEIGHT , "HelloWorld"};
-        Device Device{Window};
-        Renderer Renderer{Window, Device};
+        ZWindow Window{WIDTH , HEIGHT , "HelloWorld"};
+        ZDevice Device{Window};
+        ZRenderer Renderer{Window, Device};
         
-        std::vector<GameObject> gameObjects;
+        std::vector<ZGameObject> gameObjects;
     };
     
 }

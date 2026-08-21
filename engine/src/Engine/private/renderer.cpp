@@ -4,20 +4,20 @@
 #include <iostream>
 #include <stdexcept>
 
-namespace Engine
+namespace ZEngine
 {
-    Renderer::Renderer(class Window& Window, class Device& Device) : Window(Window), Device(Device)
+    ZRenderer::ZRenderer(class ZWindow& Window, class ZDevice& Device) : Window(Window), Device(Device)
     {
         recreateSwapchain();
         createCommandBuffers();
     }
 
-    Renderer::~Renderer()
+    ZRenderer::~ZRenderer()
     {
         freeCommandBuffers();
     }
 
-    void Renderer::createCommandBuffers()
+    void ZRenderer::createCommandBuffers()
     {
         commandBuffers.resize(Swapchain->MAX_FRAMES_IN_FLIGHT);
         
@@ -33,7 +33,7 @@ namespace Engine
         }
     }
 
-    void Renderer::freeCommandBuffers()
+    void ZRenderer::freeCommandBuffers()
     {
         vkFreeCommandBuffers(Device.device(), Device.getCommandPool(),
             static_cast<uint32_t>(commandBuffers.size()),
@@ -42,7 +42,7 @@ namespace Engine
         commandBuffers.clear();
     }
 
-    void Renderer::recreateSwapchain()
+    void ZRenderer::recreateSwapchain()
     {
         auto extent = Window.getExtent();
         while (extent.width == 0 || extent.height == 0)
@@ -55,12 +55,12 @@ namespace Engine
         
         if (Swapchain == nullptr)
         {
-            Swapchain = std::make_unique<SwapChain>(Device, extent);
+            Swapchain = std::make_unique<ZSwapChain>(Device, extent);
         }
         else
         {
-            std::shared_ptr<SwapChain> oldSwapChain = std::move(Swapchain);
-            Swapchain = std::make_unique<SwapChain>(Device, extent, oldSwapChain);
+            std::shared_ptr<ZSwapChain> oldSwapChain = std::move(Swapchain);
+            Swapchain = std::make_unique<ZSwapChain>(Device, extent, oldSwapChain);
             
             if (!oldSwapChain->compareSwapFormates(*Swapchain.get()))
             {
@@ -69,7 +69,7 @@ namespace Engine
         }
     }
     
-    VkCommandBuffer Renderer::beginFrame()
+    VkCommandBuffer ZRenderer::beginFrame()
     {
         assert(!isFrameStarted && "Cant call beginFrame while already in progress");
         auto result = Swapchain->acquireNextImage(&currentImageIndex);
@@ -100,7 +100,7 @@ namespace Engine
         return commandBuffer;
     }
 
-    void Renderer::endFrame()
+    void ZRenderer::endFrame()
     {
         assert(isFrameStarted && "Cant call endFrame while not in progress");
         
@@ -124,7 +124,7 @@ namespace Engine
         currentFrameIndex = (currentFrameIndex + 1) % Swapchain->MAX_FRAMES_IN_FLIGHT;
     }
 
-    void Renderer::beginSwapchainRenderPass(VkCommandBuffer commandBuffer)
+    void ZRenderer::beginSwapchainRenderPass(VkCommandBuffer commandBuffer)
     {
         assert(isFrameStarted && "Cant call beginSwapchain if frame is not in progress");
         assert(commandBuffer == getCurrentCommandBuffer() && 
@@ -159,7 +159,7 @@ namespace Engine
         
     }
 
-    void Renderer::endSwapchainRenderPass(VkCommandBuffer commandBuffer)
+    void ZRenderer::endSwapchainRenderPass(VkCommandBuffer commandBuffer)
     {
         assert(isFrameStarted && "Cant call endSwapchain if frame is not in progress");
         assert(commandBuffer == getCurrentCommandBuffer() && 

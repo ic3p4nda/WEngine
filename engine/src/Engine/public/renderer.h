@@ -9,16 +9,16 @@
 #include <vector>
 #include <cassert>
 
-namespace Engine {
+namespace ZEngine {
     
-    class Renderer
+    class ZRenderer
     {
     public:
-        Renderer( Window& Window, Device& Device);
-        ~Renderer();
+        ZRenderer( ZWindow& Window, ZDevice& Device);
+        ~ZRenderer();
         
-        Renderer(const Renderer&) = delete;
-        Renderer &operator=(const Renderer&) = delete;
+        ZRenderer(const ZRenderer&) = delete;
+        ZRenderer &operator=(const ZRenderer&) = delete;
         
         VkRenderPass getSwapchainRenderPass() const {return Swapchain->getRenderPass();};
         float getAspectRatio() const {return Swapchain->extentAspectRatio();};
@@ -47,9 +47,9 @@ namespace Engine {
         void freeCommandBuffers();
         void recreateSwapchain();
         
-        Window& Window;
-        Device& Device;
-        std::unique_ptr<SwapChain> Swapchain;
+        ZWindow& Window;
+        ZDevice& Device;
+        std::unique_ptr<ZSwapChain> Swapchain;
         std::vector<VkCommandBuffer> commandBuffers;
         
         uint32_t currentImageIndex = 0;

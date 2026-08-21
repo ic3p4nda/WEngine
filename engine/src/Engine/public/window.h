@@ -6,22 +6,27 @@
 
 #include <string>
 #include <functional>
+#include <vector>
+#include <glm/vec2.hpp>
 
-namespace Engine
+namespace ZEngine
 {
-    class Window
+    class ZWindow
     {
     public:
-        Window(int w, int h, std::string t);
-        ~Window();
+        ZWindow(int w, int h, std::string t);
+        ~ZWindow();
         
-        Window(const Window &) = delete;
-        Window &operator=(const Window &) = delete;
+        ZWindow(const ZWindow &) = delete;
+        ZWindow &operator=(const ZWindow &) = delete;
         
         bool shouldClose() {return glfwWindowShouldClose(window);};
         VkExtent2D getExtent() { return {static_cast<uint32_t>(width), static_cast<uint32_t>(height)}; }
         bool wasWindowReized() { return frameBufferResized; }
         void resetWindowResizeFlag() { frameBufferResized = false; }
+        GLFWwindow* getGLFWwindow() const { return window; };
+        
+        glm::vec2 getWindowExtent() { return glm::vec2(static_cast<float>(width), static_cast<float>(height)); }
         
         void createWindowSurface(VkInstance instance, VkSurfaceKHR *surface);
     private:
@@ -30,6 +35,7 @@ namespace Engine
         
         int width;
         int height;
+        
         bool frameBufferResized = false;
         
         std::string windowTitle;

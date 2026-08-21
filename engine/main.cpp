@@ -6,7 +6,7 @@
 
 int main()
 {
-    Engine::App app;
+    ZEngine::ZApp app;
     
     try
     {

@@ -6,7 +6,7 @@
 #include <string>
 #include <vector>
 
-namespace Engine {
+namespace ZEngine {
 
 struct SwapChainSupportDetails {
   VkSurfaceCapabilitiesKHR capabilities;
@@ -22,7 +22,7 @@ struct QueueFamilyIndices {
   bool isComplete() { return graphicsFamilyHasValue && presentFamilyHasValue; }
 };
 
-class Device {
+class ZDevice {
  public:
 #ifdef NDEBUG
   const bool enableValidationLayers = false;
@@ -30,14 +30,14 @@ class Device {
   const bool enableValidationLayers = true;
 #endif
 
-  Device(Window &window);
-  ~Device();
+  ZDevice(ZWindow &window);
+  ~ZDevice();
 
   // Not copyable or movable
-  Device(const Device &) = delete;
-  Device operator=(const Device &) = delete;
-  Device(Device &&) = delete;
-  Device &operator=(Device &&) = delete;
+  ZDevice(const ZDevice &) = delete;
+  ZDevice operator=(const ZDevice &) = delete;
+  ZDevice(ZDevice &&) = delete;
+  ZDevice &operator=(ZDevice &&) = delete;
 
   VkCommandPool getCommandPool() { return commandPool; }
   VkDevice device() { return device_; }
@@ -93,7 +93,7 @@ class Device {
   VkInstance instance;
   VkDebugUtilsMessengerEXT debugMessenger;
   VkPhysicalDevice physicalDevice = VK_NULL_HANDLE;
-  Window &window;
+  ZWindow &window;
   VkCommandPool commandPool;
 
   VkDevice device_;

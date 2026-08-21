@@ -5,7 +5,7 @@
 #include <string>
 #include <vector>
 
-namespace Engine
+namespace ZEngine
 {
     struct PipelineConfigInfo
     {
@@ -26,18 +26,18 @@ namespace Engine
         uint32_t subpass = 0;
     };
     
-    class Pipeline
+    class ZPipeline
     {
     public:
-        Pipeline(Device &device, 
+        ZPipeline(ZDevice &device, 
             const PipelineConfigInfo &configInfo,
             const std::string& vertFilepath, 
             const std::string& fragFilepath);
         
-        ~Pipeline();
+        ~ZPipeline();
         
-        Pipeline(const Pipeline &) = delete;
-        Pipeline& operator=(const Pipeline &) = delete;
+        ZPipeline(const ZPipeline &) = delete;
+        ZPipeline& operator=(const ZPipeline &) = delete;
         
         void bind(VkCommandBuffer commandBuffer);
         static void defaultPipelineConfigInfo(PipelineConfigInfo &configInfo);
@@ -51,7 +51,7 @@ namespace Engine
         
         void createShaderModule(const std::vector<char>& code, VkShaderModule* shaderModule);
         
-        Device& device;
+        ZDevice& device;
         VkPipeline graphicsPipeline;
         VkShaderModule vertShaderModule;
         VkShaderModule fragShaderModule;
